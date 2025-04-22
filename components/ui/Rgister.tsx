@@ -28,11 +28,25 @@ const RegistrationForm = () => {
   };
 
   const strength = getPasswordStrength(form.password);
-
-  const handleSubmit = () => {
-    console.log('Registration form submitted:', form);
-    // Handle form submission logic here
+  const ip = "http://192.168.100.6:3300/addUser" 
+  const pc =  'http://127.0.0.1:3300/addUser'
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(pc, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(form),
+      });
+  
+      const data = await response.json();
+      console.log('Server response:', data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
+  
 
   return (
     <View style={{ padding: 20, backgroundColor: '#f2f2f2', flex: 1 }}>
@@ -100,7 +114,7 @@ const RegistrationForm = () => {
         />
       </View>
 
-      <Button title="Confirm Registration" onPress={handleSubmit} />
+      <Button title="Confirm Registration" onPress={()=>{handleSubmit()}} />
     </View>
   );
 };

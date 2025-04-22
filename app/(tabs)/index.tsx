@@ -3,7 +3,7 @@ import { View, Text, Button, TouchableOpacity ,TextInput} from 'react-native';
 import Owners from "@/components/ui/Owners"
 import Dashboard from '@/components/ui/Dashbooard';
 import Login from "@/components/ui/Login"
-
+import BusinessForm from '@/components/ui/BusinessForm';
 const App = () => {
   // State to track the current page
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -43,14 +43,11 @@ const App = () => {
         );
       case 'owners':
         return (
-          <Owners/>
+          <Owners setCurrentPage={setCurrentPage} />
         );
       case 'business':
         return (
-          <View>
-            <Text>Business Page</Text>
-            <Button title="Go to Dashboard" onPress={() => setCurrentPage('dashboard')} />
-          </View>
+          <BusinessForm setCurrentPage={setCurrentPage} />
         );
       default:
         return <Text>Page not found</Text>;

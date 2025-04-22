@@ -7,7 +7,7 @@ interface InputProps {
   onChangeText?: (text: string) => void;
 }
 
-const VanityForm = () => {
+const VanityForm = ({ setCurrentPage }: { setCurrentPage: (page: string) => void }) => {
   const [showVehicle, setShowVehicle] = useState(false);
   const [showTrustee, setShowTrustee] = useState(false);
   
@@ -19,12 +19,10 @@ const VanityForm = () => {
     setShowVehicle(false);
   };
 
-   const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('Kiarie');
   const [lastName, setLastName] = useState('Mwangi');
   const [phoneNumber, setPhoneNumber] = useState('+2542354365');
-
- 
 
   const handleAddTrustee = () => {
     console.log('Trustee Added:', trusteeDetails);
@@ -47,7 +45,7 @@ const VanityForm = () => {
         marginBottom: 20,
       }}>Vanity</Text>
 
-<Input label="First Name:" value={firstName} onChangeText={setFirstName} />
+      <Input label="First Name:" value={firstName} onChangeText={setFirstName} />
       <Input label="Middle Name:" value={middleName} onChangeText={setMiddleName} />
       <Input label="Last Name:" value={lastName} onChangeText={setLastName} />
       <Input label="Phone Number:" value={phoneNumber} onChangeText={setPhoneNumber} />
@@ -179,6 +177,27 @@ const VanityForm = () => {
           </TouchableOpacity>
         </View>
       )}
+
+      {/* Dashboard Button */}
+      <TouchableOpacity
+        onPress={() => setCurrentPage('dashboard')}
+        style={{
+          alignSelf: 'center',
+          backgroundColor: '#6c757d', // Muted gray
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
+      >
+        <Text style={{
+          color: 'white',
+          fontSize: 16,
+          fontWeight: '600',
+        }}>
+          Go to Dashboard
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
